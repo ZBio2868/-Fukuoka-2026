@@ -4,6 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#FFF8EF">
+<link rel="manifest" href="./manifest.json">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="福岡行程">
 <title>福岡家族旅行</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1902,11 +1907,11 @@ body.fz2 .bn .bni{width:31px;height:31px}
   .bn[aria-selected="true"] .ni-on{transform:scale(1.08)}
 }
 
-/* ── 9. 票券頁：SUGI 杉藥局優惠券 ───────────────────── */
-#tk-sugi .cpshow img{height:240px;object-fit:contain;object-position:center;background:#fff;padding:3px}
-body.fz2 #tk-sugi .cpshow img{height:300px}
-#tk-sugi .cpc-logo img{object-fit:contain;padding:4px;background:#fff}
-#tk-sugi .tkhint{margin:7px 0 2px}
+/* ── 9. 優惠頁：SUGI 杉藥局優惠券 ───────────────────── */
+#cp-sugi .cpshow img{height:240px;object-fit:contain;object-position:center;background:#fff;padding:3px}
+body.fz2 #cp-sugi .cpshow img{height:300px}
+#cp-sugi .cpc-logo img{object-fit:contain;padding:4px;background:#fff}
+#cp-sugi .tkhint{margin:7px 0 2px}
 </style>
 </head>
 <body>
@@ -2567,6 +2572,32 @@ const COUPON = `
   </div>
 </details>
 
+<div class="panel cpn cpc" id="cp-sugi">
+  <div class="cpc-hd">
+    <span class="cpc-logo"><img src="${CPLOGO.sugi}" alt="SUGI 杉藥局"></span>
+    <span class="cph"><b>SUGI 杉藥局</b><em>博多站旁・24 小時營業</em></span>
+  </div>
+  <div class="cptags">
+    <span class="cptag">免稅最高 10%</span>
+    <span class="cptag">滿 1 萬再 4%</span>
+    <span class="cptag">滿 3 萬再 6%</span>
+    <span class="cptag">滿 5 萬再 8%</span>
+  </div>
+  <button type="button" class="cpshow" data-cbig="sugi">
+    <img src="${CPIMG.sugi}" alt="SUGI 杉藥局免稅優惠券">
+    <span class="cpz">點我放大給店員掃條碼</span>
+  </button>
+  <p class="tkhint">結帳「前」就要先拿出來，條碼掃過才有折</p>
+  <div class="row"><span class="k">位置</span><span class="v">博多車站旁，離飯店走路就到；<b class="hi">24 小時營業</b>，晚上逛完中洲回飯店前還能補貨。</span></div>
+  <div class="row"><span class="k">買什麼</span><span class="v">藥妝、日用品又便宜又齊，<b>零食</b>也有（不過食品不算在折扣裡）。一次買齊比較容易衝到下一個級距。</span></div>
+  <details class="cpterm"><summary>使用條件</summary><div class="inner">
+    <div class="row"><span class="k">折扣</span><span class="v">免稅最高 10%，另外再折：店內商品<b>滿 10,000 日圓折 4%</b>、<b>滿 30,000 日圓折 6%</b>、<b>滿 50,000 日圓折 8%</b>。三段<b>擇一</b>，看金額落在哪一段用哪一條條碼。</span></div>
+    <div class="row"><span class="k">使用</span><span class="v"><b class="hi">只有免稅結帳時可以用</b>，結帳前把券拿給店員掃。記得帶<b>護照正本</b>（本人的，影本不行）。</span></div>
+    <div class="row"><span class="k">效期</span><span class="v">2026/2/1 － 2027/2/28，這趟九月在效期內。</span></div>
+    <div class="row"><span class="k">注意</span><span class="v">同一件商品<b>不能疊加</b>其他折價券、減價券；<b>處方藥、諮詢型化妝品、所有食品、POSA 卡</b>等不適用。部分商品以店內公告為準。</span></div>
+  </div></details>
+</div>
+
 <div class="panel cpn cpc" id="cp-donki">
   <div class="cpc-hd">
     <span class="cpc-logo"><img src="${CPLOGO.donki}" alt="唐吉訶德"></span>
@@ -2666,33 +2697,7 @@ const COUPON = `
 const TICKET = `
 <div class="day-head" style="--acc:#5E8B7E">
   <div class="badge">${BI("barcode")}<span>票券</span></div>
-  <div><h2>票券</h2><div class="quip">藥妝券、取票、取餐碼：點圖放大給人掃 🎫</div></div>
-</div>
-
-<div class="panel cpc" id="tk-sugi">
-  <div class="cpc-hd">
-    <span class="cpc-logo"><img src="${CPLOGO.sugi}" alt="SUGI 杉藥局"></span>
-    <span class="cph"><b>SUGI 杉藥局</b><em>博多站旁・24 小時營業</em></span>
-  </div>
-  <div class="cptags">
-    <span class="cptag">免稅最高 10%</span>
-    <span class="cptag">滿 1 萬再 4%</span>
-    <span class="cptag">滿 3 萬再 6%</span>
-    <span class="cptag">滿 5 萬再 8%</span>
-  </div>
-  <button type="button" class="cpshow" data-cbig="sugi">
-    <img src="${CPIMG.sugi}" alt="SUGI 杉藥局免稅優惠券">
-    <span class="cpz">點我放大給店員掃條碼</span>
-  </button>
-  <p class="tkhint">結帳「前」就要先拿出來，條碼掃過才有折</p>
-  <div class="row"><span class="k">位置</span><span class="v">博多車站旁，離飯店走路就到；<b class="hi">24 小時營業</b>，晚上逛完中洲回飯店前還能補貨。</span></div>
-  <div class="row"><span class="k">買什麼</span><span class="v">藥妝、日用品又便宜又齊，<b>零食</b>也有（不過食品不算在折扣裡）。一次買齊比較容易衝到下一個級距。</span></div>
-  <details class="cpterm"><summary>使用條件</summary><div class="inner">
-    <div class="row"><span class="k">折扣</span><span class="v">免稅最高 10%，另外再折：店內商品<b>滿 10,000 日圓折 4%</b>、<b>滿 30,000 日圓折 6%</b>、<b>滿 50,000 日圓折 8%</b>。三段<b>擇一</b>，看金額落在哪一段用哪一條條碼。</span></div>
-    <div class="row"><span class="k">使用</span><span class="v"><b class="hi">只有免稅結帳時可以用</b>，結帳前把券拿給店員掃。記得帶<b>護照正本</b>（本人的，影本不行）。</span></div>
-    <div class="row"><span class="k">效期</span><span class="v">2026/2/1 － 2027/2/28，這趟九月在效期內。</span></div>
-    <div class="row"><span class="k">注意</span><span class="v">同一件商品<b>不能疊加</b>其他折價券、減價券；<b>處方藥、諮詢型化妝品、所有食品、POSA 卡</b>等不適用。部分商品以店內公告為準。</span></div>
-  </div></details>
+  <div><h2>票券</h2><div class="quip">取票、取餐碼：點圖放大給人掃 🎫</div></div>
 </div>
 
 <div class="panel" id="tk-note" style="padding:11px 13px 12px">
@@ -3087,6 +3092,7 @@ try{ const raw = localStorage.getItem(CPK); if(raw) MYCP = JSON.parse(raw) || []
 function saveCP(){ try{ localStorage.setItem(CPK, JSON.stringify(MYCP)); return true; }catch(e){ return false; } }
 
 const CP_FIX = [
+  { id:"cp-sugi", ic:"barcode", lg:"sugi",  shop:"SUGI 杉藥局",        name:"免稅再折 4～8%" },
   { id:"cp-donki",ic:"cart",    lg:"donki", shop:"唐吉訶德",           name:"免稅再折 5～7%" },
   { id:"cp-bic",  ic:"barcode", lg:"bic",   shop:"BicCamera",         name:"免稅折扣券" },
   { id:"cp-sal",  ic:"barcode", lg:"sal",   shop:"SALONIA",           name:"美容家電 5% OFF" },
@@ -3994,6 +4000,16 @@ function fzApply(on, save){
   if(document.readyState === "loading") document.addEventListener("DOMContentLoaded", wire);
   else wire();
 })();
+</script>
+<script>
+/* PWA：註冊 service worker（離線也能看行程） */
+if ("serviceWorker" in navigator) {
+  window.addEventListener("load", function () {
+    navigator.serviceWorker.register("./service-worker.js")
+      .then(function (reg) { reg.update(); })
+      .catch(function () {});
+  });
+}
 </script>
 </body>
 </html>
